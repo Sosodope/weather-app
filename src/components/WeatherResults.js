@@ -11,9 +11,6 @@ const weatherIcons = {
 };
 
 class WeatherResults extends React.Component {
-  getIcon = () => {
-    return weatherIcons[`{this.props.weatherType}`];
-  };
   render() {
     return (
       <div>

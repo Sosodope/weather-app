@@ -2,6 +2,8 @@ import React from "react";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import WeatherResults from "./components/WeatherResults";
+import "bulma/sass/utilities/_all.sass";
+import "bulma/sass/grid/columns.sass";
 
 const API_KEY = "8be3d65cca94173480958df7d29d2623";
 
@@ -46,7 +48,7 @@ class App extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div class="columns">
         <Header />
         <Form getCurrentWeather={this.getCurrentWeather} />
         <WeatherResults
