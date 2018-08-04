@@ -3,8 +3,10 @@ import React from "react";
 class Form extends React.Component {
   render() {
     return (
-      <form action="">
-        <input type="text" placeholder="location" />
+      <form onSubmit={this.props.getCurrentWeather}>
+        <input type="text" name="city" placeholder="Enter City" />
+        <input type="text" name="country" placeholder="Enter Country" />
+        <button type="submit">Get weather</button>
       </form>
     );
   }
