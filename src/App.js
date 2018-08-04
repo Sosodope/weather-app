@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import WeatherResults from "./components/WeatherResults";
 
-const API_KEY = "";
+const API_KEY = "8be3d65cca94173480958df7d29d2623";
 
 class App extends React.Component {
   state = {
@@ -23,15 +23,26 @@ class App extends React.Component {
       `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
     const data = await api_call.json();
-    console.log(data);
-    this.setState({
-      temperature: data.main.temp,
-      city: data.name,
-      weatherType: data.weather[0].main,
-      country: data.sys.country,
-      description: data.weather[0].description,
-      error: ""
-    });
+    if (city && country) {
+      console.log(data);
+      this.setState({
+        temperature: data.main.temp,
+        city: data.name,
+        weatherType: data.weather[0].main,
+        country: data.sys.country,
+        description: data.weather[0].description,
+        error: ""
+      });
+    } else {
+      this.setState({
+        temperature: undefined,
+        city: undefined,
+        weatherType: undefined,
+        country: undefined,
+        description: undefined,
+        error: "Plesae add a city and country"
+      });
+    }
   };
   render() {
     return (
