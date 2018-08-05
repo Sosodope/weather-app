@@ -3,6 +3,10 @@ body {
 }
 img {
   width: 100px;
+  margin-bottom: 20px;
+}
+h1 > img {
+  width: 40px;
 }
 form {
   display: flex;

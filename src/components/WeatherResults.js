@@ -2,12 +2,23 @@ import React from "react";
 import Clouds from "../assets/icons/partly-cloudy.svg";
 import Sun from "../assets/icons/sun.svg";
 import Rain from "../assets/icons/rain.svg";
+import Mist from "../assets/icons/mist.svg";
+import Snow from "../assets/icons/snow.svg";
+import Thunderstorm from "../assets/icons/thunderstorm.svg";
 import "../App.css";
 
 const weatherIcons = {
   Clouds: Clouds,
+  "few clouds": Clouds,
+  "scattered clouds": Clouds,
+  "broken clouds": Clouds,
   Clear: Sun,
-  Rain: Rain
+  Rain: Rain,
+  "shower rain": Rain,
+  Fog: Mist,
+  Mist: Mist,
+  Snow: Snow,
+  Thunderstorm: Thunderstorm
 };
 
 class WeatherResults extends React.Component {
