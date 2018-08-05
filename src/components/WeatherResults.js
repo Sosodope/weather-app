@@ -20,7 +20,12 @@ class WeatherResults extends React.Component {
               Location: {this.props.city}, {this.props.country}
             </p>
           )}
-        {this.props.temperature && <p>Temperature: {this.props.temperature}</p>}
+        {this.props.temperature && (
+          <p>
+            Temperature: {this.props.temperature}
+            <span> &#176;{this.props.unit === "metric" ? "C" : "F"}</span>
+          </p>
+        )}
         {this.props.description && <p>Description: {this.props.description}</p>}
         {this.props.weatherType && <img src={Sun} alt="weather type" />}
         {this.props.error && <p>{this.props.error}</p>}

@@ -2,13 +2,12 @@ import React from "react";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import WeatherResults from "./components/WeatherResults";
-import "bulma/sass/utilities/_all.sass";
-import "bulma/sass/grid/columns.sass";
 
 const API_KEY = "8be3d65cca94173480958df7d29d2623";
 
 class App extends React.Component {
   state = {
+    unit: "metric",
     temperature: undefined,
     city: undefined,
     country: undefined,
@@ -20,9 +19,10 @@ class App extends React.Component {
     e.preventDefault();
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
+    const unit = e.target.elements.unit.value;
 
     const api_call = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=${unit}`
     );
     const data = await api_call.json();
     if (city && country) {
@@ -46,19 +46,31 @@ class App extends React.Component {
       });
     }
   };
+  handleChange = e => {
+    this.setState({ unit: e.target.value });
+  };
   render() {
     return (
-      <div class="columns">
-        <Header />
-        <Form getCurrentWeather={this.getCurrentWeather} />
-        <WeatherResults
-          temperature={this.state.temperature}
-          city={this.state.city}
-          country={this.state.country}
-          description={this.state.description}
-          weatherType={this.state.weatherType}
-          error={this.state.error}
-        />
+      <div className="wrapper">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm">
+              <Header />
+              <Form getCurrentWeather={this.getCurrentWeather} />
+            </div>
+            <div className="col-sm">
+              <WeatherResults
+                temperature={this.state.temperature}
+                city={this.state.city}
+                country={this.state.country}
+                description={this.state.description}
+                weatherType={this.state.weatherType}
+                error={this.state.error}
+                unit={this.state.unit}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
