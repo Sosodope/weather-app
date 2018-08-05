@@ -20,13 +20,14 @@ class App extends React.Component {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     const unit = e.target.elements.unit.value;
+    const cityInput = document.getElementById("city");
+    const countryInput = document.getElementById("country");
 
     const api_call = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=${unit}`
     );
     const data = await api_call.json();
     if (city && country) {
-      console.log(data);
       this.setState({
         temperature: data.main.temp,
         city: data.name,
@@ -47,6 +48,8 @@ class App extends React.Component {
         error: "Please enter a city and country"
       });
     }
+    cityInput.value = "";
+    countryInput.value = "";
   };
   handleChange = e => {
     this.setState(prevState => ({ unit: e.target.value }));
