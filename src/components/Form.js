@@ -11,8 +11,8 @@ class Form extends React.Component {
           value={this.props.unit}
           onChange={this.handleChange}
         >
-          <option value="metric">&#176; C</option>
           <option value="imperial">&#176; F</option>
+          <option value="metric">&#176; C</option>
         </select>
         <button type="submit">Get weather</button>
       </form>

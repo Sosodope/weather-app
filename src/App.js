@@ -7,7 +7,7 @@ const API_KEY = "8be3d65cca94173480958df7d29d2623";
 
 class App extends React.Component {
   state = {
-    unit: "metric",
+    unit: "",
     temperature: undefined,
     city: undefined,
     country: undefined,
@@ -33,7 +33,8 @@ class App extends React.Component {
         weatherType: data.weather[0].main,
         country: data.sys.country,
         description: data.weather[0].description,
-        error: ""
+        error: "",
+        unit
       });
     } else {
       this.setState({
@@ -42,23 +43,24 @@ class App extends React.Component {
         weatherType: undefined,
         country: undefined,
         description: undefined,
-        error: "Plesae add a city and country"
+        unit: "",
+        error: "Please enter a city and country"
       });
     }
   };
   handleChange = e => {
-    this.setState({ unit: e.target.value });
+    this.setState(prevState => ({ unit: e.target.value }));
   };
   render() {
     return (
       <div className="wrapper">
-        <div className="container-fluid">
+        <div className="container-fluid main">
           <div className="row">
-            <div className="col-sm">
+            <div className="col-sm col-xs-6 form-container">
               <Header />
               <Form getCurrentWeather={this.getCurrentWeather} />
             </div>
-            <div className="col-sm">
+            <div className="col-sm col-xs-6 results-container">
               <WeatherResults
                 temperature={this.state.temperature}
                 city={this.state.city}
